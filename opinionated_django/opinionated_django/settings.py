@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "anymail",
     "django_celery_results",
+    "django_celery_beat",
     # Local
     "users",
     "pages",
@@ -202,4 +203,13 @@ if DEBUG:
     INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS
 
 # django-on-heroku
+
 django_on_heroku.settings(locals())
+
+# django-celery-results
+
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_CACHE_BACKEND = "django-cache"
+
+# We can also use the cache defined in the CACHES setting in django.
+# CELERY_CACHE_BACKEND = 'default'
