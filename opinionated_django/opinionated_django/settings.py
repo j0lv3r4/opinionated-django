@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "anymail"
+    "anymail",
     # Local
     "users",
     "pages",
@@ -134,7 +134,6 @@ STATIC_URL = "/static/"
 AUTH_USER_MODEL = "users.CustomUser"
 
 # django-allauth
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 AUTHENTICATION_BACKENDS = (
     # Login by username in Django admin, regardless of `allauth`
@@ -165,3 +164,21 @@ ANYMAIL = {
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 DEFAULT_FROM_EMAIL = "juan@jolvera.dev"
 SERVER_EMAIL = "server@jolvera.dev"  # email for Django errors
+
+# django-storages
+
+# To allow `django-admin collectstatic` to automatically put your static files in your bucket set the following in your
+# settings.py:
+# STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+AWS_ACCESS_KEY_ID = ""
+AWS_SECRET_ACCESS_KEY = ""
+AWS_STORAGE_BUCKET_NAME = ""
+
+AWS_S3_FILE_OVERWRITE = False
+
+# Media folder
+DEFAULT_FILE_STORAGE = "opinionated_django.custom_storage.MediaStorage"
+DEFAULT_S3_PATH = "media"
+MEDIA_ROOT = "/%s/" % DEFAULT_S3_PATH
+MEDIA_URL = f"//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/media/"
