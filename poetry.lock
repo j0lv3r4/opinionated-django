@@ -141,6 +141,14 @@ amazon_ses = ["boto3"]
 
 [[package]]
 category = "main"
+description = "Django-environ allows you to utilize 12factor inspired environment variables to configure your Django application."
+name = "django-environ"
+optional = false
+python-versions = "*"
+version = "0.4.5"
+
+[[package]]
+category = "main"
 description = "Support for many storage backends in Django"
 name = "django-storages"
 optional = false
@@ -365,7 +373,7 @@ python-versions = "*"
 version = "1.12.1"
 
 [metadata]
-content-hash = "22572cb13723eb6e7817ae7275d497bab1c49f51b10752f9ca5f1f3f86eeb838"
+content-hash = "ee1d8b9e5e1554287a0d6ba4a49decf7b24d8ba2185d972651a8aeabe2188d23"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -415,6 +423,10 @@ django-allauth = [
 django-anymail = [
     {file = "django-anymail-8.0.tar.gz", hash = "sha256:9a0a7d3f0722d0b4509548051b0d7578384e7d2d65112fc01c1ce66e5e16ae0c"},
     {file = "django_anymail-8.0-py3-none-any.whl", hash = "sha256:ee6a59f8b4a4897fef49d40b876e62d62e55c7450f3380e830777194da1fd1b8"},
+]
+django-environ = [
+    {file = "django-environ-0.4.5.tar.gz", hash = "sha256:6c9d87660142608f63ec7d5ce5564c49b603ea8ff25da595fd6098f6dc82afde"},
+    {file = "django_environ-0.4.5-py2.py3-none-any.whl", hash = "sha256:c57b3c11ec1f319d9474e3e5a79134f40174b17c7cc024bbb2fad84646b120c4"},
 ]
 django-storages = [
     {file = "django-storages-1.10.1.tar.gz", hash = "sha256:652275ab7844538c462b62810276c0244866f345878256a9e0e86f5b1283ae18"},

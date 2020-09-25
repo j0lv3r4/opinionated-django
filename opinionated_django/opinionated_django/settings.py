@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
+import environ
+
+env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "5*h2&@o_7_z%n!5s37(jd0mtvecs9$3y=l0%h-z)p817@36kzz"
+SECRET_KEY = env(
+    "DJANGO_SECRET_KEY", default="5*h2&@o_7_z%n!5s37(jd0mtvecs9$3y=l0%h-z)p817@36kzz"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DJANGO_DEBUG", default=True)
 
 ALLOWED_HOSTS = []
 
@@ -86,10 +91,7 @@ WSGI_APPLICATION = "opinionated_django.wsgi.application"
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": env.db("DATABASE_URL", default="sqlite:///db.sqlite3"),
 }
 
 
@@ -129,9 +131,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = "/static/"
+# STATIC_URL = "/static/"
 
 # Custom User Model
+
 AUTH_USER_MODEL = "users.CustomUser"
 
 # django-allauth
@@ -158,13 +161,13 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "home"
 # anymail
 
 ANYMAIL = {
-    "MAILGUN_API_KEY": "<mailgun key>",
-    "MAILGUN_SENDER_DOMAIN": "mg.jolvera.dev",
+    "MAILGUN_API_KEY": env("MAILGUN_API_KEY", "<mailgun key>"),
+    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_SENDER_DOMAIN", "mg.jolvera.dev"),
 }
 
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-DEFAULT_FROM_EMAIL = "juan@jolvera.dev"
-SERVER_EMAIL = "server@jolvera.dev"  # email for Django errors
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", "juan@jolvera.dev")
+SERVER_EMAIL = env("SERVER_EMAIL", "server@jolvera.dev")  # email for Django errors
 
 # django-storages
 
@@ -172,9 +175,9 @@ SERVER_EMAIL = "server@jolvera.dev"  # email for Django errors
 # settings.py:
 # STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
-AWS_ACCESS_KEY_ID = ""
-AWS_SECRET_ACCESS_KEY = ""
-AWS_STORAGE_BUCKET_NAME = ""
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
 
 AWS_S3_FILE_OVERWRITE = False
 
