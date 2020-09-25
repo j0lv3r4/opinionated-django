@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -182,3 +183,12 @@ DEFAULT_FILE_STORAGE = "opinionated_django.custom_storage.MediaStorage"
 DEFAULT_S3_PATH = "media"
 MEDIA_ROOT = "/%s/" % DEFAULT_S3_PATH
 MEDIA_URL = f"//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/media/"
+
+# whitenoise
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+if DEBUG:
+    INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS
