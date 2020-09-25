@@ -126,6 +126,21 @@ requests-oauthlib = ">=0.3.0"
 
 [[package]]
 category = "main"
+description = "Django email integration for Amazon SES, Mailgun, Mailjet, Postmark, SendGrid, SendinBlue, SparkPost and other transactional ESPs"
+name = "django-anymail"
+optional = false
+python-versions = ">=3.5"
+version = "8.0"
+
+[package.dependencies]
+django = ">=2.0"
+requests = ">=2.4.3"
+
+[package.extras]
+amazon_ses = ["boto3"]
+
+[[package]]
+category = "main"
 description = "Internationalized Domain Names in Applications (IDNA)"
 name = "idna"
 optional = false
@@ -331,7 +346,7 @@ python-versions = "*"
 version = "1.12.1"
 
 [metadata]
-content-hash = "4151534d5ad6110a48c23af7631229b7e9fa127898e3fedfd89ecb3392b2b60c"
+content-hash = "ddce01d2defad7f67506441fd37d94335d7628f04139bc3555c80f8e764df6b6"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -377,6 +392,10 @@ django = [
 ]
 django-allauth = [
     {file = "django-allauth-0.42.0.tar.gz", hash = "sha256:f17209410b7f87da0a84639fd79d3771b596a6d3fc1a8e48ce50dabc7f441d30"},
+]
+django-anymail = [
+    {file = "django-anymail-8.0.tar.gz", hash = "sha256:9a0a7d3f0722d0b4509548051b0d7578384e7d2d65112fc01c1ce66e5e16ae0c"},
+    {file = "django_anymail-8.0-py3-none-any.whl", hash = "sha256:ee6a59f8b4a4897fef49d40b876e62d62e55c7450f3380e830777194da1fd1b8"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},

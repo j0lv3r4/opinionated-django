@@ -39,10 +39,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    # django-allauth
+    # 3rd party
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "anymail"
     # Local
     "users",
     "pages",
@@ -133,7 +134,7 @@ STATIC_URL = "/static/"
 AUTH_USER_MODEL = "users.CustomUser"
 
 # django-allauth
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 AUTHENTICATION_BACKENDS = (
     # Login by username in Django admin, regardless of `allauth`
@@ -153,3 +154,14 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 LOGIN_REDIRECT_URL = "home"
 ACCOUNT_LOGOUT_REDIRECT_URL = "home"
+
+# anymail
+
+ANYMAIL = {
+    "MAILGUN_API_KEY": "<mailgun key>",
+    "MAILGUN_SENDER_DOMAIN": "mg.jolvera.dev",
+}
+
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+DEFAULT_FROM_EMAIL = "juan@jolvera.dev"
+SERVER_EMAIL = "server@jolvera.dev"  # email for Django errors
