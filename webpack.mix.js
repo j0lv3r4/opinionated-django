@@ -12,8 +12,8 @@ let mix = require("laravel-mix");
  */
 
 mix
-  .js("./src/js/app.js", "./opinionated_django/static/")
-  .sass("./src/scss/app.scss", "./opinionated_django/css/");
+  .js("./src/js/app.js", "./opinionated_django/static/js/")
+  .sass("./src/scss/app.scss", "./opinionated_django/static/css/");
 
 // Full API
 // mix.js(src, output);
