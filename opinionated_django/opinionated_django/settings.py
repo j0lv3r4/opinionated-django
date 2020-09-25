@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
+import django_on_heroku
 import environ
 
 env = environ.Env()
@@ -195,3 +196,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 if DEBUG:
     INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS
+
+# django-on-heroku
+django_on_heroku.settings(locals())
