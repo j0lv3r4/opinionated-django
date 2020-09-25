@@ -15,7 +15,10 @@ from pathlib import Path
 import django_on_heroku
 import environ
 
+ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
+
 env = environ.Env()
+env.read_env(str(ROOT_DIR / ".env"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,6 +53,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "anymail",
+    "django_celery_results",
     # Local
     "users",
     "pages",
@@ -162,13 +166,13 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "home"
 # anymail
 
 ANYMAIL = {
-    "MAILGUN_API_KEY": env("MAILGUN_API_KEY", "<mailgun key>"),
-    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_SENDER_DOMAIN", "mg.jolvera.dev"),
+    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_SENDER_DOMAIN"),
 }
 
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", "juan@jolvera.dev")
-SERVER_EMAIL = env("SERVER_EMAIL", "server@jolvera.dev")  # email for Django errors
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
+SERVER_EMAIL = env("SERVER_EMAIL")  # email for Django errors
 
 # django-storages
 
